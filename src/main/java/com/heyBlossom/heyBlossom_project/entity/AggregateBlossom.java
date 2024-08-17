@@ -10,12 +10,15 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "AggregateBlossom")
+@Table(name = "AggregateBlossoms")
 public class AggregateBlossom extends BaseEntity {
 
+    @Column(name = "week", nullable = false)
     private String week;
 
+    @Column(name = "start_date", nullable = false)
     private LocalDateTime startDate;
 
+    @Column(name = "end_date", nullable = false)
     private LocalDateTime endDate;
 }

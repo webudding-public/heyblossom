@@ -11,13 +11,16 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "User")
+@Table(name = "Users")
 public class User extends BaseEntity {
 
+    @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "nick_name", nullable = false)
     private String nickname;
 
+    @Column(name = "status", nullable = false)
     private int status;
 
     @OneToMany(mappedBy = "fromUser")

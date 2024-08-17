@@ -11,14 +11,14 @@ import lombok.*;
 public class UserBlossom extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "from_user_id")
+    @JoinColumn(name = "from_user_id", nullable = false)
     private User fromUser;
 
     @ManyToOne
-    @JoinColumn(name = "to_user_id")
+    @JoinColumn(name = "to_user_id", nullable = false)
     private User toUser;
 
     @ManyToOne
-    @JoinColumn(name = "blossom_id")
+    @JoinColumn(name = "blossom_id", nullable = false)
     private Blossom blossom;
 }

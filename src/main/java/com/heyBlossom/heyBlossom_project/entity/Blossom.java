@@ -8,9 +8,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "Blossom")
+@Table(name = "Blossoms")
 public class Blossom extends BaseEntity {
 
+    @Column(name = "description", nullable = false)
     private String description;
 
     @OneToMany(mappedBy = "blossom")
