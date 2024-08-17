@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AggregateBlossomController {
     @GetMapping("/")
     public String aggregateBlossom() {
-        return "data";
+        return "aggregateBlossom data";
     }
 }
