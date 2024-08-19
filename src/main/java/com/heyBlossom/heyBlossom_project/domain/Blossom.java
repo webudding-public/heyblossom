@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 public class Blossom {
+
     private Long id;
     private String description;
     private User fromUser;
