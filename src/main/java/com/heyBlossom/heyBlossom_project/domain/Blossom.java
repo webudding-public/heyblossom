@@ -2,7 +2,6 @@ package com.heyBlossom.heyBlossom_project.domain;
 
 import com.heyBlossom.heyBlossom_project.entity.User;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public class Blossom {

@@ -1,17 +1,14 @@
 package com.heyBlossom.heyBlossom_project.repository;
 
 import com.heyBlossom.heyBlossom_project.domain.Blossom;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-interface IBlossomRepository {
-    void save(Blossom blossom);
-}
+import java.time.LocalDate;
+import java.util.List;
 
-@Repository
-public class BlossomRepository implements IBlossomRepository {
+public interface BlossomRepository extends JpaRepository<Blossom, Long> {
 
-    @Override
-    public void save(Blossom blossom) {
-        return;
-    }
+    Blossom save(Blossom blossom);
+
+    List<Blossom> findByCreatedDateAfter(LocalDate date);
 }
