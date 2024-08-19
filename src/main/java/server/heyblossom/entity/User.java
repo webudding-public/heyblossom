@@ -11,11 +11,7 @@ import org.hibernate.annotations.ColumnDefault;
 @Getter
 @Setter
 @NoArgsConstructor
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends Base {
 
     @Column(nullable = false)
     private String email;
@@ -33,4 +29,51 @@ public class User {
     @Column(nullable = false)
     @ColumnDefault("0")
     private Integer receivedCount;
+
+
+    public User(String email, String nickname, String password) {
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Integer getGivenCount() {
+        return givenCount;
+    }
+
+    public void setGivenCount(Integer givenCount) {
+        this.givenCount = givenCount;
+    }
+
+    public Integer getReceivedCount() {
+        return receivedCount;
+    }
+
+    public void setReceivedCount(Integer receivedCount) {
+        this.receivedCount = receivedCount;
+    }
 }
