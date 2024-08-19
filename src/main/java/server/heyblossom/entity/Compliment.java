@@ -26,4 +26,33 @@ public class Compliment extends Base {
     @Column(name = "message", nullable = false)
     private String message;
 
+    public Compliment(User giver, User receiver, String message) {
+        this.giver = giver;
+        this.receiver = receiver;
+        this.message = message;
+    }
+
+    public User getGiver() {
+        return giver;
+    }
+
+    public void setGiver(User giver) {
+        this.giver = giver;
+    }
+
+    public User getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

@@ -39,3 +39,6 @@ out/
 ### env
 .env
 .env.*
+
+### Q
+src/main/generated
