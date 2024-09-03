@@ -4,16 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
-
-import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Compliments")
+@Table(name = "Blossoms")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Compliment extends Base {
+public class Blossom extends Base {
 
     @ManyToOne
     @JoinColumn(name = "giver_id", nullable = false)
@@ -26,7 +23,7 @@ public class Compliment extends Base {
     @Column(name = "message", nullable = false)
     private String message;
 
-    public Compliment(User giver, User receiver, String message) {
+    public Blossom(User giver, User receiver, String message) {
         this.giver = giver;
         this.receiver = receiver;
         this.message = message;

@@ -3,13 +3,15 @@ package server.heyblossom.user;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import server.heyblossom.entity.Compliment;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import server.heyblossom.entity.Blossom;
 import server.heyblossom.entity.User;
-import server.heyblossom.repository.ComplimentRepository;
-import server.heyblossom.repository.ComplimentRepositoryCustom;
+import server.heyblossom.repository.BlossomRepository;
 import server.heyblossom.repository.UserRepository;
 import server.heyblossom.service.UserServiceImpl;
 
@@ -19,15 +21,14 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
+//@DataJpaTest
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
 
     @Mock
     private UserRepository userRepository;
     @Mock
-    private ComplimentRepository complimentRepository;
-    @Mock
-    private ComplimentRepositoryCustom complimentRepositoryCustom;
-
+    private BlossomRepository blossomRepository;
     @InjectMocks
     private UserServiceImpl userService;
 
@@ -62,16 +63,25 @@ public class UserServiceTest {
         User user2 = new User("user2@example.com","user2", "1234");
         User user3 = new User("user3@example.com","user3", "1234");
 
-        Compliment compliment1 = new Compliment(user1, user2, "test message");
-        Compliment compliment2 = new Compliment(user2, user3, "test message");
+        Blossom blossom1 = new Blossom(user1, user2, "test message");
+        Blossom blossom2 = new Blossom(user2, user3, "test message");
 
         List<User> givers = Arrays.asList(user1, user2);
-        List<Compliment> compliments = Arrays.asList(compliment1, compliment2);
+        List<Blossom> blossoms = Arrays.asList(blossom1, blossom2);
+        System.out.println("givers: " + givers);
+        System.out.println("blossoms: " + blossoms);
 
-        when(complimentRepository.findAll()).thenReturn(compliments);
+        blossomRepository.save(blossom1);
+        blossomRepository.save(blossom2);
+
+//        List<Blossom> blossomList = blossomRepository.findAll();
+//        System.out.println("blossomList: " + blossomList);
+
+        when(blossomRepository.findAll()).thenReturn(blossoms);
 
         // When
         List<User> result = userService.findGivers();
+        when(userService.findGivers()).thenReturn(givers);
 
         // Then
         assertEquals(givers, result);
