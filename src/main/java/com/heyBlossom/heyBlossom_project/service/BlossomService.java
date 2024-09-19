@@ -1,9 +1,11 @@
 package com.heyBlossom.heyBlossom_project.service;
 
+import com.heyBlossom.heyBlossom_project.controller.req.BlossomReqObj;
 import com.heyBlossom.heyBlossom_project.domain.Blossom;
 import com.heyBlossom.heyBlossom_project.dto.AggregateBlossomDto;
 import com.heyBlossom.heyBlossom_project.entity.User;
 import com.heyBlossom.heyBlossom_project.repository.BlossomRepository;
+import com.heyBlossom.heyBlossom_project.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ public class BlossomService {
 
     @Autowired
     private BlossomRepository blossomRepository;
+    private UserRepository userRepository;
 
     public List<AggregateBlossomDto> findBlossomTop5() {
         // 1. 이번 달 1일부터 현재까지 모든 Blossom 데이터 조회
@@ -42,5 +45,24 @@ public class BlossomService {
                 .limit(5)
                 .map(entry -> new AggregateBlossomDto(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
+    }
+
+    public Blossom saveBlossom(BlossomReqObj blossomReqObj) throws Exception {
+        // 1. giverName, receiverName으로 각각 User 객체 조회
+        User giver = userRepository.findOneByUserName(blossomReqObj.getGiverName());
+        User receiver = userRepository.findOneByUserName(blossomReqObj.getReceiverName());
+        if (giver == null || receiver == null) {
+            throw new Exception("giver or receiver is not exist.");
+        }
+
+        // 2. Blossom 객체 생성
+        Blossom blossomObject = Blossom.builder()
+                .giver(giver)
+                .receiver(receiver)
+                .message(blossomReqObj.getMessage())
+                .build();
+
+        // 3. Blossom 객체 데이터 저장
+        return blossomRepository.save(blossomObject);
     }
 }

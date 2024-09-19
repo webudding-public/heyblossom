@@ -7,8 +7,5 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface BlossomRepository extends JpaRepository<Blossom, Long> {
-
-    Blossom save(Blossom blossom);
-
     List<Blossom> findByCreatedDateAfter(LocalDate date);
 }
