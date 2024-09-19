@@ -7,7 +7,7 @@ import lombok.Getter;
 public class Blossom {
 
     private Long id;
-    private String description;
-    private User fromUser;
-    private User toUser;
+    private String message;
+    private User giver;
+    private User receiver;
 }

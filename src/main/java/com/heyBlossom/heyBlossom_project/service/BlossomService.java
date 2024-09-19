@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
-
 @Service
 public class BlossomService {
 
@@ -27,11 +25,11 @@ public class BlossomService {
         LocalDate firstDayOfMonth = now.withDayOfMonth(1);
         List<Blossom> blossoms = blossomRepository.findByCreatedDateAfter(firstDayOfMonth);
 
-        // 2. 반복문 돌며 toUser 당 count 합계 계산
+        // 2. 반복문 돌며 giver 당 count 합계 계산
         Map<String, Long> blossomCountMap = new HashMap<>();
         for (Blossom blossom : blossoms) {
-            User toUser = blossom.getToUser();
-            blossomCountMap.put(toUser.getName(), blossomCountMap.getOrDefault(toUser.getName(), 0L) + 1);
+            User giver = blossom.getGiver();
+            blossomCountMap.put(giver.getName(), blossomCountMap.getOrDefault(giver.getName(), 0L) + 1);
         }
 
         // 3. count가 많은 순으로 내림차순 정렬

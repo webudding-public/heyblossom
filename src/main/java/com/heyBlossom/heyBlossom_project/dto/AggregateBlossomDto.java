@@ -5,11 +5,11 @@ import lombok.Data;
 @Data
 public class AggregateBlossomDto {
 
-    private String toUserName;
+    private String receiver;
     private Number getBlossoms;
 
-    public AggregateBlossomDto(String toUserName, Number getBlossoms) {
-        this.toUserName = toUserName;
+    public AggregateBlossomDto(String receiver, Number getBlossoms) {
+        this.receiver = receiver;
         this.getBlossoms = getBlossoms;
     }
 }
