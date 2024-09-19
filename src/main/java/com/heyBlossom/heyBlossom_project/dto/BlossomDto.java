@@ -8,15 +8,15 @@ import lombok.Data;
 public class BlossomDto {
 
     private Long id;
-    private String description;
-    private User fromUser;
-    private User toUser;
+    private String message;
+    private User giver;
+    private User receiver;
 
     @Builder
-    public BlossomDto(Long id, String description, User fromUser, User toUser) {
+    public BlossomDto(Long id, String message, User giver, User receiver) {
         this.id = id;
-        this.description = description;
-        this.fromUser = fromUser;
-        this.toUser = toUser;
+        this.message = message;
+        this.giver = giver;
+        this.receiver = receiver;
     }
 }
