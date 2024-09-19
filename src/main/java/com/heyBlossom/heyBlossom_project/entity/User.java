@@ -2,8 +2,7 @@ package com.heyBlossom.heyBlossom_project.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.Set;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Getter
@@ -21,11 +20,13 @@ public class User extends BaseEntity {
     private String nickname;
 
     @Column(name = "status", nullable = false)
-    private int status;
+    private Integer status;
 
-    @OneToMany(mappedBy = "fromUser")
-    private Set<UserBlossom> sentBlossoms;
+    @Column(nullable = false )
+    @ColumnDefault("0")
+    private Integer givenCount;
 
-    @OneToMany(mappedBy = "toUser")
-    private Set<UserBlossom> receivedBlossoms;
+    @Column(nullable = false)
+    @ColumnDefault("0")
+    private Integer receivedCount;
 }

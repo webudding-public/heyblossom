@@ -2,7 +2,6 @@ package com.heyBlossom.heyBlossom_project.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -11,9 +10,14 @@ import java.util.Set;
 @Table(name = "Blossoms")
 public class Blossom extends BaseEntity {
 
-    @Column(name = "description", nullable = false)
-    private String description;
+    @ManyToOne
+    @JoinColumn(name = "giver_id", nullable = false)
+    private User giver;
 
-    @OneToMany(mappedBy = "blossom")
-    private Set<UserBlossom> userBlossoms;
+    @ManyToOne
+    @JoinColumn(name = "receiver_id", nullable = false)
+    private User receiver;
+
+    @Column(name = "message", nullable = false)
+    private String message;
 }
